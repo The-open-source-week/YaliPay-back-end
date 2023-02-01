@@ -13,10 +13,10 @@ model Account {
   email       String
   password    String
   phoneNumber String
-  code        String
-  verifiredAt DateTime
-  createdAt   DateTime
-  updatedAt   DateTime
+  code        Int 
+  verifiredAt DateTime?  @default(now())
+  createdAt   DateTime?  @default(now())
+  updatedAt   DateTime?  @default(now())
 
   @@map("accounts")
 }
