@@ -23,8 +23,18 @@
   "dependencies": {
     "@nestjs/common": "^8.0.0",
     "@nestjs/core": "^8.0.0",
+    "@nestjs/jwt": "^10.0.1",
+    "@nestjs/passport": "^9.0.1",
     "@nestjs/platform-express": "^8.0.0",
+    "@nestjs/swagger": "^6.1.4",
     "@prisma/client": "4.9.0",
+    "@types/bcrypt": "^5.0.0",
+    "@types/passport-jwt": "^3.0.8",
+    "@types/passport-local": "^1.0.35",
+    "bcrypt": "^5.1.0",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.0",
+    "passport-local": "^1.0.0",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^7.2.0"
