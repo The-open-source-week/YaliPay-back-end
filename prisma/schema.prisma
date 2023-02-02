@@ -1,5 +1,7 @@
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  binaryTargets   = ["native", "linux-musl"]
+  previewFeatures = ["fullTextSearch"]
 }
 
 datasource db {
@@ -8,15 +10,16 @@ datasource db {
 }
 
 model Account {
-  id          String   @id @default(uuid())
-  username    String
-  email       String
-  password    String
-  phoneNumber String
-  code        Int 
-  verifiredAt DateTime?  @default(now())
-  createdAt   DateTime?  @default(now())
-  updatedAt   DateTime?  @default(now())
+  id            String    @id @default(uuid())
+  username      String
+  email         String
+  password      String
+  phoneNumber   String
+  code          Int
+  accountNumber String
+  verifiredAt   DateTime? @default(now())
+  createdAt     DateTime? @default(now())
+  updatedAt     DateTime? @default(now())
 
   @@map("accounts")
 }
