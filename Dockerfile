@@ -6,13 +6,11 @@ WORKDIR /usr/src/app
 
 COPY package*.json ./
 
-RUN yarn
+RUN npm install
 
 COPY . .
 
-RUN npm run build
-
-RUN npm run start:prod
+RUN npm run dev
 
 EXPOSE 3000
 
