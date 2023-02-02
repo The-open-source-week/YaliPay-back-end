@@ -2,7 +2,11 @@ name: yalipay_ci
   on:
     pull_request:
       branches:
-        - main   
+        - main
+    push:
+      branches:
+        - main
+        
   jobs:
     check-application:
       runs-on: ubuntu-latest
