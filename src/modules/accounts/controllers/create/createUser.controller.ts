@@ -4,11 +4,11 @@ import { CreateUserDTO } from '../../dtos/create-user.dto';
 
 @Controller('user')
 export class CreateUserController {
-  constructor(private userService: CreateUserService){}
+  constructor(private userService: CreateUserService) {}
 
-  @Post("/create")
+  @Post('/create')
   @HttpCode(HttpStatus.CREATED)
-  create(@Body() CreateUserDTO ){
-   return this.userService.execute(CreateUserDTO)
+  create(@Body() createUserDTO: CreateUserDTO) {
+    return this.userService.execute(createUserDTO);
   }
 }
