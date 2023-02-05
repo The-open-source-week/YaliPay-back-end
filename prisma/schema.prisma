@@ -20,6 +20,23 @@ model Account {
   verifiredAt   DateTime? @default(now())
   createdAt     DateTime? @default(now())
   updatedAt     DateTime? @default(now())
+  Card          Card[]
 
   @@map("accounts")
+}
+
+model Card {
+  id             String    @id @default(uuid())
+  accountId      String
+  accounts       Account   @relation(fields: [accountId], references: [id])
+  cardHolderName String
+  cardNumber     BigInt
+  cvv            Int
+  expireAt       DateTime
+  amount         Float
+  isActive       Boolean   @default(true)
+  createdAt      DateTime? @default(now())
+  updatedAt      DateTime? @default(now())
+
+  @@map("cards")
 }

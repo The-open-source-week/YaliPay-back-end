@@ -10,20 +10,15 @@ export class CreateUserService {
   constructor(private userRepository: CreateUserRepository) {}
 
   async execute(data: CreateUserDTO): Promise<void> {
-    const findUser = await this.userRepository.findByEmail(data.email);
-
-    if (findUser) {
-      throw new Error('Usuário já existe');
-    }
     const passwordHash = (data.password = bcrypt.hashSync(data.password, 12));
 
     await this.userRepository.create({
       username: data.username,
+      accountNumber: GenerateAccountNumber(),
+      code: GenerateConfirmationCode(),
+      password: passwordHash,
       email: data.email,
       phoneNumber: data.phoneNumber,
-      password: passwordHash,
-      code: GenerateConfirmationCode(),
-      accountNumber: GenerateAccountNumber(),
     });
   }
 }
