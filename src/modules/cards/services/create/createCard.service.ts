@@ -13,7 +13,6 @@ export class CreateCardService {
     const card = await this.cardRepository.create({
       amount: 0,
       cardNumber: Number(cardNumber),
-      cardHolderName: data.cardHolderName,
       isActive: true,
       cvv: GenerateCVV(),
       accountId: data.accountId,

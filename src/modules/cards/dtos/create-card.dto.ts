@@ -7,10 +7,6 @@ export class CreateCardDTO {
   @ApiProperty({ required: true })
   accountId: string;
 
-  @IsString()
-  @ApiProperty({ required: true })
-  cardHolderName: string;
-
   @IsNotEmpty()
   @IsNumber()
   @ApiProperty({ required: true })

@@ -26,17 +26,16 @@ model Account {
 }
 
 model Card {
-  id             String    @id @default(uuid())
-  cardHolderName String
-  cardNumber     BigInt
-  cvv            Int
-  amount         Float
-  isActive       Boolean   @default(true)
-  createdAt      DateTime? @default(now())
-  updatedAt      DateTime? @default(now())
-  expireAt       DateTime
-  accountId      String
-  accounts       Account   @relation(fields: [accountId], references: [id])
+  id         String    @id @default(uuid())
+  cardNumber BigInt
+  cvv        Int
+  amount     Float
+  isActive   Boolean   @default(true)
+  createdAt  DateTime? @default(now())
+  updatedAt  DateTime? @default(now())
+  expireAt   DateTime
+  accountId  String
+  accounts   Account   @relation(fields: [accountId], references: [id])
 
   @@map("cards")
 }

@@ -22,7 +22,6 @@ export class PrismaCardsRepository implements ICardsRepository {
       data: {
         accountId: _data.accountId ?? card.accountId,
         amount: _data.amount ?? card.amount,
-        cardHolderName: _data.cardHolderName ?? card.cardHolderName,
         expireAt: _data.expireAt ?? card.expireAt,
         isActive: _data.isActive ?? card.isActive,
       },
