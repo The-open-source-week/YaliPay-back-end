@@ -4,10 +4,10 @@ import { ApiProperty } from '@nestjs/swagger';
 
 @Controller('profile')
 export class ProfileController {
-  @UseGuards(AuthGuard)
+  @UseGuards(AuthGuard('jwt'))
   @Get('/')
   @ApiProperty()
-  getProfile(@Request() req) {
-    return req.user;
+  async profile(@Request() req: any) {
+    return await req.user;
   }
 }
