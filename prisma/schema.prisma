@@ -27,7 +27,7 @@ model Account {
 
 model Card {
   id         String    @id @default(uuid())
-  cardNumber BigInt
+  cardNumber String
   cvv        Int
   amount     Float
   isActive   Boolean   @default(true)

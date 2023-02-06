@@ -10,7 +10,7 @@ export class CreateCardDTO {
   @IsNotEmpty()
   @IsNumber()
   @ApiProperty({ required: true })
-  cardNumber: number;
+  cardNumber: string;
 
   @IsNotEmpty()
   @IsNumber()
