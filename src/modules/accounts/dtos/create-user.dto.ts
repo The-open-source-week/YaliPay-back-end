@@ -24,12 +24,10 @@ export class CreateUserDTO {
   phoneNumber: string;
 
   @IsString()
-  @IsNotEmpty()
   @ApiProperty()
   code: number;
 
   @IsString()
-  @IsNotEmpty()
   @ApiProperty()
   accountNumber: string;
 }
