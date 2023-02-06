@@ -8,8 +8,8 @@ import { Account } from '@prisma/client';
 export class PrismaCreateUserRepository implements CreateUserRepository {
   constructor(private readonly Prisma: PrismaService) {}
 
-  async create(userDto: CreateUserDTO): Promise<void> {
-    await this.Prisma.account.create({
+  async create(userDto: CreateUserDTO): Promise<Account> {
+    const user = await this.Prisma.account.create({
       data: {
         username: userDto.username,
         email: userDto.email,
@@ -19,6 +19,8 @@ export class PrismaCreateUserRepository implements CreateUserRepository {
         accountNumber: userDto.accountNumber,
       },
     });
+
+    return user;
   }
 
   async findByEmail(email: string): Promise<Account> {
