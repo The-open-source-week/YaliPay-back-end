@@ -7,17 +7,17 @@ import { ICardsRepository } from '../cardsRepository';
 
 @Injectable()
 export class PrismaCardsRepository implements ICardsRepository {
-  constructor(private readonly _prisma: PrismaService) {}
+  constructor(private readonly prisma: PrismaService) {}
 
-  create(_data: CreateCardDTO): Promise<Card> {
-    return this._prisma.card.create({
-      data: _data,
+  create(cardDto: CreateCardDTO): Promise<Card> {
+    return this.prisma.card.create({
+      data: cardDto,
     });
   }
   async update(id: string, _data: UpdateCardDTO): Promise<Card> {
-    const card = await this._prisma.card.findUnique({ where: { id } });
+    const card = await this.prisma.card.findUnique({ where: { id } });
     if (!card) return null;
-    return this._prisma.card.update({
+    return this.prisma.card.update({
       where: { id },
       data: {
         accountId: _data.accountId ?? card.accountId,
@@ -28,7 +28,7 @@ export class PrismaCardsRepository implements ICardsRepository {
     });
   }
   show({ id }: { id: string }): Promise<Card> {
-    return this._prisma.card.findUnique({
+    return this.prisma.card.findUnique({
       where: { id },
       include: {
         accounts: true,
@@ -36,10 +36,10 @@ export class PrismaCardsRepository implements ICardsRepository {
     });
   }
   remove({ id }: { id: string }): Promise<Card> {
-    return this._prisma.card.delete({ where: { id } });
+    return this.prisma.card.delete({ where: { id } });
   }
   accountCards({ accountId }: { accountId: string }): Promise<Card[]> {
-    return this._prisma.card.findMany({
+    return this.prisma.card.findMany({
       where: { accountId },
       include: {
         accounts: true,
