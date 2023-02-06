@@ -1,11 +1,13 @@
 import {
   Controller,
+  Get,
   HttpCode,
   HttpStatus,
   Post,
   Req,
   UseGuards,
   UsePipes,
+  Request,
   ValidationPipe,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
@@ -23,5 +25,11 @@ export class LoginController {
   @HttpCode(HttpStatus.CREATED)
   async handle(@Req() req: any) {
     return await this.loginService.login(req.user);
+  }
+
+  @UseGuards(AuthGuard)
+  @Get('profile')
+  getProfile(@Request() req) {
+    return req.user;
   }
 }
