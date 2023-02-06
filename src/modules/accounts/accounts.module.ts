@@ -11,6 +11,8 @@ import { JwtStrategy } from './services/jwt-strategy/jwt.strategy.service';
 import { LocalStrategy } from './services/jwt-strategy/local-jwt.strategy.service';
 import { LoginController } from './controllers/login/login.controller';
 import { ProfileController } from './controllers/profile/profile.controller';
+import { ICardsRepository } from '../cards/repositories/cardsRepository';
+import { PrismaCardsRepository } from '../cards/repositories/implementations/prismaCardsRepository';
 
 @Module({
   controllers: [CreateUserController, LoginController, ProfileController],
@@ -23,6 +25,10 @@ import { ProfileController } from './controllers/profile/profile.controller';
     {
       provide: CreateUserRepository,
       useClass: PrismaCreateUserRepository,
+    },
+    {
+      provide: ICardsRepository,
+      useClass: PrismaCardsRepository,
     },
   ],
   imports: [
