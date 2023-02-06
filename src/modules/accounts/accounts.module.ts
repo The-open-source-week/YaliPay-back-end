@@ -10,9 +10,10 @@ import { LoginService } from './services/login/login.service';
 import { JwtStrategy } from './services/jwt-strategy/jwt.strategy.service';
 import { LocalStrategy } from './services/jwt-strategy/local-jwt.strategy.service';
 import { LoginController } from './controllers/login/login.controller';
+import { ProfileController } from './controllers/profile/profile.controller';
 
 @Module({
-  controllers: [CreateUserController, LoginController],
+  controllers: [CreateUserController, LoginController, ProfileController],
   providers: [
     CreateUserService,
     LoginService,
