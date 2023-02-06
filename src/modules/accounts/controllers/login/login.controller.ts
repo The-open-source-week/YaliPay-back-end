@@ -26,10 +26,4 @@ export class LoginController {
   async handle(@Req() req: any) {
     return await this.loginService.login(req.user);
   }
-
-  @UseGuards(AuthGuard)
-  @Get('profile')
-  getProfile(@Request() req) {
-    return req.user;
-  }
 }
