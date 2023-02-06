@@ -5,6 +5,10 @@ import { config } from './doc';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  app.enableCors({
+    origin: '*',
+  });
+
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api/v1', app, document);
   app.setGlobalPrefix('api/v1');
