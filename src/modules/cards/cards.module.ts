@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ICardsRepository } from './repositories/cardsRepository';
 import { PrismaCardsRepository } from './repositories/implementations/prismaCardsRepository';
+import { PrismaModule } from '../prisma/prisma.module';
 
 @Module({
   controllers: [],
@@ -10,6 +11,6 @@ import { PrismaCardsRepository } from './repositories/implementations/prismaCard
       useClass: PrismaCardsRepository,
     },
   ],
-  imports: [],
+  imports: [PrismaModule],
 })
 export class CardsModule {}
