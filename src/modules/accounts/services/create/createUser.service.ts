@@ -33,7 +33,6 @@ export class CreateUserService {
     await this.cardRepository.create({
       amount: 0,
       cardNumber: Number(cardNumber),
-      cardHolderName: cardDTO.cardHolderName,
       isActive: true,
       cvv: GenerateCVV(),
       accountId: user.id,
