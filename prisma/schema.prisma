@@ -1,7 +1,7 @@
 generator client {
   provider        = "prisma-client-js"
-  binaryTargets   = ["native", "linux-musl"]
   previewFeatures = ["fullTextSearch"]
+  binaryTargets   = ["native", "linux-musl"]
 }
 
 datasource db {
@@ -15,11 +15,11 @@ model Account {
   email         String
   password      String
   phoneNumber   String
-  code          Int
-  accountNumber String
   verifiredAt   DateTime? @default(now())
   createdAt     DateTime? @default(now())
   updatedAt     DateTime? @default(now())
+  code          Int
+  accountNumber String
   Card          Card[]
 
   @@map("accounts")
@@ -27,16 +27,16 @@ model Account {
 
 model Card {
   id             String    @id @default(uuid())
-  accountId      String
-  accounts       Account   @relation(fields: [accountId], references: [id])
   cardHolderName String
   cardNumber     BigInt
   cvv            Int
-  expireAt       DateTime
   amount         Float
   isActive       Boolean   @default(true)
   createdAt      DateTime? @default(now())
   updatedAt      DateTime? @default(now())
+  expireAt       DateTime
+  accountId      String
+  accounts       Account   @relation(fields: [accountId], references: [id])
 
   @@map("cards")
 }
