@@ -10,32 +10,46 @@ datasource db {
 }
 
 model Account {
-  id            String    @id @default(uuid())
+  id            String         @id @default(uuid())
   username      String
   email         String
   password      String
   phoneNumber   String
-  verifiredAt   DateTime? @default(now())
-  createdAt     DateTime? @default(now())
-  updatedAt     DateTime? @default(now())
+  verifiredAt   DateTime?      @default(now())
+  createdAt     DateTime?      @default(now())
+  updatedAt     DateTime?      @default(now())
   code          Int
   accountNumber String
   Card          Card[]
+  Transference  Transference[]
 
   @@map("accounts")
 }
 
 model Card {
-  id         String    @id @default(uuid())
-  cardNumber String
-  cvv        Int
-  amount     Float
-  isActive   Boolean   @default(true)
-  createdAt  DateTime? @default(now())
-  updatedAt  DateTime? @default(now())
-  expireAt   DateTime
-  accountId  String
-  accounts   Account   @relation(fields: [accountId], references: [id])
+  id           String         @id @default(uuid())
+  cardNumber   String
+  cvv          Int
+  amount       Float
+  isActive     Boolean        @default(true)
+  createdAt    DateTime?      @default(now())
+  updatedAt    DateTime?      @default(now())
+  expireAt     DateTime
+  accountId    String
+  accounts     Account        @relation(fields: [accountId], references: [id])
+  Transference Transference[]
 
   @@map("cards")
+}
+
+model Transference {
+  id          String  @id @default(uuid())
+  amount      Float
+  phoneNumber String
+  cardId      String
+  accountId   String
+  card        Card    @relation(fields: [cardId], references: [id])
+  account     Account @relation(fields: [accountId], references: [id])
+
+  @@map("transferences")
 }
