@@ -22,7 +22,7 @@ export class CreateUserService {
       if (userAlready) {
         throw new HttpException(
           {
-            status: HttpStatus.CONFLICT,
+            status: HttpStatus.BAD_REQUEST,
             error: 'Usuário já existe',
           },
           HttpStatus.BAD_REQUEST,

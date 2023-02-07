@@ -11,7 +11,7 @@ export class ShowCardService {
       if (!card) {
         throw new HttpException(
           {
-            status: HttpStatus.CONFLICT,
+            status: HttpStatus.NOT_FOUND,
             error: `Cartão não encontrado.`,
           },
           HttpStatus.NOT_FOUND,
