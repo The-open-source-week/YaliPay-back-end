@@ -7,17 +7,21 @@ import { GenerateCVV } from '../../../../utils/GenerateCVV';
 export class CreateCardService {
   constructor(private readonly cardRepository: ICardsRepository) {}
   async execute(data: CreateCardDTO) {
-    const expiretDate = new Date('2025-07-12T14:30:00Z');
+    try {
+      const expiretDate = new Date('2025-07-12T14:30:00Z');
 
-    const card = await this.cardRepository.create({
-      amount: 0,
-      cardNumber: data.cardNumber,
-      isActive: true,
-      cvv: GenerateCVV(),
-      accountId: data.accountId,
-      expireAt: expiretDate,
-    });
+      const card = await this.cardRepository.create({
+        amount: 0,
+        cardNumber: data.cardNumber,
+        isActive: true,
+        cvv: GenerateCVV(),
+        accountId: data.accountId,
+        expireAt: expiretDate,
+      });
 
-    return card;
+      return card;
+    } catch (error) {
+      throw new error();
+    }
   }
 }
