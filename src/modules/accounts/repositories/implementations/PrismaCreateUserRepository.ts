@@ -32,4 +32,24 @@ export class PrismaCreateUserRepository implements CreateUserRepository {
 
     return user;
   }
+
+  async findByPhone(phoneNumber: string): Promise<Account> {
+    const phone = await this.Prisma.account.findFirst({
+      where: {
+        phoneNumber: phoneNumber,
+      },
+    });
+
+    return phone;
+  }
+
+  async findById(id: string): Promise<Account> {
+    const user = await this.Prisma.account.findFirst({
+      where: {
+        id: id,
+      },
+    });
+
+    return user;
+  }
 }
