@@ -18,10 +18,7 @@ export class CreateTransferencesController {
     @Body() createTransferenceDto: CreateTransferenceDto,
     @Me() user: any,
   ) {
-    console.log('VIndo do request', user);
-    console.log('vindo do currecnt user login', user.sub.sub);
     createTransferenceDto.accountId = user.sub.sub;
-    // createTransferenceDto.cardID = user.cardID;
     return this.transferencesService.create(createTransferenceDto);
   }
 }
