@@ -4,30 +4,28 @@ import { IsEmail, IsNotEmpty, IsString } from 'class-validator';
 export class CreateUserDTO {
   @IsString()
   @IsNotEmpty()
-  @ApiProperty()
+  @ApiProperty({ required: true })
   username: string;
 
   @IsString()
   @IsNotEmpty()
   @IsEmail()
-  @ApiProperty()
+  @ApiProperty({ required: true })
   email: string;
 
   @IsString()
   @IsNotEmpty()
-  @ApiProperty()
+  @ApiProperty({ required: true })
   password: string;
 
   @IsString()
   @IsNotEmpty()
-  @ApiProperty()
+  @ApiProperty({ required: true })
   phoneNumber: string;
 
   @IsString()
-  @ApiProperty()
   code: number;
 
   @IsString()
-  @ApiProperty()
   accountNumber: string;
 }
