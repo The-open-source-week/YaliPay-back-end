@@ -29,7 +29,9 @@ export class CreateUserService {
         );
       }
 
-      const passwordHash = (data.password = bcrypt.hashSync(data.password, 12));
+      const passwordHash = bcrypt.hashSync(data.password, 12);
+      data.password = passwordHash;
+
       const expiretDate = new Date('2025-07-12T14:30:00Z');
 
       const user = await this.userRepository.create({
