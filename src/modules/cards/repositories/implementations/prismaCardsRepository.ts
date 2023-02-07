@@ -30,7 +30,7 @@ export class PrismaCardsRepository implements ICardsRepository {
     });
   }
 
-  show({ id }: { id: string }): Promise<Card> {
+  show(id: string): Promise<Card> {
     return this.prisma.card.findUnique({
       where: { id },
       include: {
