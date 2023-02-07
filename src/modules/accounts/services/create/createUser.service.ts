@@ -25,7 +25,7 @@ export class CreateUserService {
             status: HttpStatus.CONFLICT,
             error: 'Usuário já existe',
           },
-          HttpStatus.CONFLICT,
+          HttpStatus.BAD_REQUEST,
         );
       }
 

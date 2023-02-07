@@ -16,11 +16,11 @@ import { ShowCardService } from '../../services/ShowCard/ShowCard.service';
 export class ShowCardController {
   constructor(private showCardService: ShowCardService) {}
 
-  @Get('/')
+  @Get('/me')
   @ApiProperty()
   @HttpCode(HttpStatus.OK)
-  create(@Body() accountID: string, @Me() user: any) {
-    accountID = user.sub.sub;
+  create(@Body() @Me() user: any) {
+    const accountID = user.sub.sub;
     return this.showCardService.execute(accountID);
   }
 }

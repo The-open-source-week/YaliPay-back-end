@@ -14,7 +14,7 @@ export class ShowCardService {
             status: HttpStatus.CONFLICT,
             error: `Cartão não encontrado.`,
           },
-          HttpStatus.CONFLICT,
+          HttpStatus.NOT_FOUND,
         );
       }
       return card;
