@@ -8,4 +8,5 @@ export abstract class ICardsRepository {
   abstract show({ id }: { id: string }): Promise<Card>;
   abstract remove({ id }: { id: string }): Promise<Card>;
   abstract accountCards({ accountId }: { accountId: string }): Promise<Card[]>;
+  abstract findOne(id: string): Promise<Card>;
 }
