@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Card, Account } from '@prisma/client';
+import { Card } from '@prisma/client';
 import { PrismaService } from '../../../../modules/prisma/prisma.service';
 import { CreateCardDTO } from '../../dtos/create-card.dto';
 import { UpdateCardDTO } from '../../dtos/update-card.dto';
@@ -14,19 +14,22 @@ export class PrismaCardsRepository implements ICardsRepository {
       data: cardDto,
     });
   }
-  async update(id: string, _data: UpdateCardDTO): Promise<Card> {
+  async update(id: string, data: UpdateCardDTO): Promise<Card> {
     const card = await this.prisma.card.findUnique({ where: { id } });
+
     if (!card) return null;
+
     return this.prisma.card.update({
       where: { id },
       data: {
-        accountId: _data.accountId ?? card.accountId,
-        amount: _data.amount ?? card.amount,
-        expireAt: _data.expireAt ?? card.expireAt,
-        isActive: _data.isActive ?? card.isActive,
+        accountId: data.accountId,
+        amount: data.amount,
+        expireAt: data.expireAt,
+        isActive: data.isActive,
       },
     });
   }
+
   show({ id }: { id: string }): Promise<Card> {
     return this.prisma.card.findUnique({
       where: { id },
@@ -35,6 +38,7 @@ export class PrismaCardsRepository implements ICardsRepository {
       },
     });
   }
+
   remove({ id }: { id: string }): Promise<Card> {
     return this.prisma.card.delete({ where: { id } });
   }
@@ -45,5 +49,13 @@ export class PrismaCardsRepository implements ICardsRepository {
         accounts: true,
       },
     });
+  }
+
+  async findOne(id: string): Promise<Card> {
+    const data = await this.prisma.card.findFirst({
+      where: { id: id },
+    });
+
+    return data;
   }
 }
