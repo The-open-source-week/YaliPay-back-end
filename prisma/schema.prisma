@@ -36,6 +36,7 @@ model Card {
   updatedAt    DateTime?      @default(now())
   expireAt     DateTime
   accountId    String
+  isMain       Boolean
   accounts     Account        @relation(fields: [accountId], references: [id])
   Transference Transference[]
 
