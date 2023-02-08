@@ -1,11 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import {
-  IsBoolean,
-  IsDate,
-  IsNotEmpty,
-  IsNumber,
-  IsString,
-} from 'class-validator';
+import { IsBoolean, IsDate, IsNumber, IsString } from 'class-validator';
 
 export class UpdateCardDTO {
   @IsString()
@@ -28,4 +22,7 @@ export class UpdateCardDTO {
 
   @IsBoolean()
   isActive?: boolean;
+
+  @IsBoolean()
+  isMain?: boolean;
 }
