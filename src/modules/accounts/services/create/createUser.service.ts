@@ -47,6 +47,7 @@ export class CreateUserService {
         amount: 0,
         cardNumber: GenerateAccountNumber(),
         isActive: true,
+        isMain: true,
         cvv: GenerateCVV(),
         accountId: user.id,
         expireAt: expiretDate,
