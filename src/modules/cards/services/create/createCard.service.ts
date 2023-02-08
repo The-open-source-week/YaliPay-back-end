@@ -14,6 +14,7 @@ export class CreateCardService {
         amount: 0,
         cardNumber: data.cardNumber,
         isActive: true,
+        isMain: false,
         cvv: GenerateCVV(),
         accountId: data.accountId,
         expireAt: expiretDate,
