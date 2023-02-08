@@ -26,6 +26,7 @@ export class PrismaCardsRepository implements ICardsRepository {
         amount: data.amount,
         expireAt: data.expireAt,
         isActive: data.isActive,
+        isMain: data.isMain,
       },
     });
   }
@@ -39,23 +40,47 @@ export class PrismaCardsRepository implements ICardsRepository {
     });
   }
 
-  remove({ id }: { id: string }): Promise<Card> {
-    return this.prisma.card.delete({ where: { id } });
+  async remove({ id }: { id: string }): Promise<Card> {
+    return await this.prisma.card.delete({ where: { id } });
   }
-  accountCards({ accountId }: { accountId: string }): Promise<Card[]> {
-    return this.prisma.card.findMany({
+  async accountCards({ accountId }: { accountId: string }): Promise<Card[]> {
+    return await this.prisma.card.findMany({
       where: { accountId },
-      include: {
-        accounts: true,
-      },
     });
   }
 
+  async GetMainCard({ accountId }: { accountId: string }): Promise<Card> {
+    const card = await this.prisma.card.findFirst({
+      where: {
+        accounts: {
+          id: accountId,
+        },
+        isMain: true,
+      },
+    });
+
+    return card;
+  }
+
   async findOne(id: string): Promise<Card> {
-    const data = await this.prisma.card.findFirst({
+    const data = await this.prisma.card.findUnique({
       where: { id: id },
     });
 
     return data;
+  }
+
+  async activateCard(cardId: string): Promise<void> {
+    await this.prisma.card.update({
+      where: { id: cardId },
+      data: { isActive: true },
+    });
+  }
+
+  async deactivateCard(cardId: string): Promise<void> {
+    await this.prisma.card.update({
+      where: { id: cardId },
+      data: { isActive: false },
+    });
   }
 }
