@@ -28,4 +28,8 @@ export class CreateCardDTO {
   @IsNotEmpty()
   @IsBoolean()
   isActive: boolean;
+
+  @IsNotEmpty()
+  @IsBoolean()
+  isMain: boolean;
 }
