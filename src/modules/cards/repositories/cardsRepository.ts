@@ -1,4 +1,4 @@
-import { Account, Card } from '@prisma/client';
+import { Card } from '@prisma/client';
 import { CreateCardDTO } from '../dtos/create-card.dto';
 import { UpdateCardDTO } from '../dtos/update-card.dto';
 
@@ -8,5 +8,8 @@ export abstract class ICardsRepository {
   abstract show(id: string): Promise<Card>;
   abstract remove({ id }: { id: string }): Promise<Card>;
   abstract accountCards({ accountId }: { accountId: string }): Promise<Card[]>;
+  abstract GetMainCard({ accountId }: { accountId: string }): Promise<Card>;
   abstract findOne(id: string): Promise<Card>;
+  abstract deactivateCard(cardId: string): Promise<void>;
+  abstract activateCard(cardId: string): Promise<void>;
 }
