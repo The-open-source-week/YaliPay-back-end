@@ -2,12 +2,12 @@ import { ApiProperty } from '@nestjs/swagger';
 import { IsNotEmpty, IsString } from 'class-validator';
 
 export class CreateTransferenceDto {
-  @IsNotEmpty()
+  @IsNotEmpty({ message: 'Precisas preencher este campo é obrigatório' })
   @IsString()
   @ApiProperty()
   phoneNumber: string;
 
-  @IsNotEmpty()
+  @IsNotEmpty({ message: 'Precisas preencher este campo é obrigatório' })
   @ApiProperty()
   amount: number;
 
