@@ -3,23 +3,23 @@ import { IsEmail, IsNotEmpty, IsString } from 'class-validator';
 
 export class CreateUserDTO {
   @IsString()
-  @IsNotEmpty()
+  @IsNotEmpty({ message: 'Precisas preencher este campo é obrigatório' })
   @ApiProperty({ required: true })
   username: string;
 
   @IsString()
-  @IsNotEmpty()
+  @IsNotEmpty({ message: 'Precisas preencher este campo é obrigatório' })
   @IsEmail()
   @ApiProperty({ required: true })
   email: string;
 
   @IsString()
-  @IsNotEmpty()
+  @IsNotEmpty({ message: 'Precisas preencher este campo é obrigatório' })
   @ApiProperty({ required: true })
   password: string;
 
   @IsString()
-  @IsNotEmpty()
+  @IsNotEmpty({ message: 'Precisas preencher este campo é obrigatório' })
   @ApiProperty({ required: true })
   phoneNumber: string;
 
