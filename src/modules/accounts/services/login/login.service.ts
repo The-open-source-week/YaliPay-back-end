@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
 import { CreateUserRepository } from '../../repositories/CreateUserRepository';
@@ -22,12 +22,19 @@ export class LoginService {
   }
 
   async validateUser(email: string, password: string) {
-    const user = await this.userRepository.findByEmail(email);
+    try {
+      const user = await this.userRepository.findByEmail(email);
 
-    const isPasswordValid = bcrypt.compareSync(password, user.password);
+      if (!user) {
+        throw new UnauthorizedException('Email ou palavra passe errada!');
+      }
+      const isPasswordValid = bcrypt.compareSync(password, user.password);
 
-    if (!isPasswordValid) return null;
+      if (!isPasswordValid) return null;
 
-    return user;
+      return user;
+    } catch (error) {
+      throw error;
+    }
   }
 }
