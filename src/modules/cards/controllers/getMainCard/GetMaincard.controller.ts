@@ -8,7 +8,7 @@ import {
 } from '@nestjs/common';
 import { ApiProperty } from '@nestjs/swagger';
 import { AuthUserGuard } from '../../../accounts/guards/auth.guard';
-import { Me } from 'src/modules/accounts/guards/current-user.guard';
+import { Me } from '../../../../modules/accounts/guards/current-user.guard';
 import { GetMainCardService } from '../../services/getMainCard/GetMainCard.service';
 
 @UseGuards(AuthUserGuard)
