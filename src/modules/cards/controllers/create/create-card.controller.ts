@@ -10,7 +10,7 @@ import { CreateCardDTO } from '../../../../modules/cards/dtos/create-card.dto';
 import { ApiProperty } from '@nestjs/swagger';
 import { CreateCardService } from '../../services/create/createCard.service';
 import { AuthUserGuard } from '../../../../modules/accounts/guards/auth.guard';
-import { Me } from 'src/modules/accounts/guards/current-user.guard';
+import { Me } from '../../../../modules/accounts/guards/current-user.guard';
 
 @Controller('card')
 export class CreateCardController {
