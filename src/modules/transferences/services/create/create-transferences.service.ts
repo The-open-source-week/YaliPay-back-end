@@ -3,7 +3,7 @@ import { CreateTransferenceDto } from '../../dtos/create-transference.dto';
 import { CreateTransferenceRepository } from '../../repositories/CreateTransferenceRepositories';
 import { ICardsRepository } from '../../../../modules/cards/repositories/cardsRepository';
 import { Transference } from '@prisma/client';
-import { CreateUserRepository } from 'src/modules/accounts/repositories/CreateUserRepository';
+import { CreateUserRepository } from '../../../../modules/accounts/repositories/CreateUserRepository';
 
 @Injectable()
 export class CreateTransferencesService {
