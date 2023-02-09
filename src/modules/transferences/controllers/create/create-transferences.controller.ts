@@ -1,8 +1,8 @@
 import { Controller, Post, Body, UseGuards, Request } from '@nestjs/common';
 import { CreateTransferenceDto } from '../../dtos/create-transference.dto';
 import { CreateTransferencesService } from '../../services/create/create-transferences.service';
-import { AuthUserGuard } from 'src/modules/accounts/guards/auth.guard';
-import { Me } from 'src/modules/accounts/guards/current-user.guard';
+import { AuthUserGuard } from '../../../../modules/accounts/guards/auth.guard';
+import { Me } from '../../../../modules/accounts/guards/current-user.guard';
 import { ApiProperty } from '@nestjs/swagger';
 
 @UseGuards(AuthUserGuard)
