@@ -1,7 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { LoginService } from './login.service';
-import { LocalStrategy } from '../jwt-strategy/local-jwt.strategy.service';
-import { JwtStrategy } from '../jwt-strategy/jwt.strategy.service';
 import { PrismaModule } from '../../../../modules/prisma/prisma.module';
 import { CreateUserRepository } from '../../repositories/CreateUserRepository';
 import { PrismaCreateUserRepository } from '../../repositories/implementations/PrismaCreateUserRepository';
@@ -16,8 +14,6 @@ describe('LoginService', () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
         LoginService,
-        LocalStrategy,
-        JwtStrategy,
         JwtService,
         {
           provide: CreateUserRepository,
