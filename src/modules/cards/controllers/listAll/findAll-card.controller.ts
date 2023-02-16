@@ -20,6 +20,7 @@ export class ListAllCardController {
   @ApiProperty()
   @HttpCode(HttpStatus.OK)
   create(@Body() accountID: string, @Me() user: any) {
+    console.log(user);
     accountID = user.sub.sub;
     return this.listAllService.execute(accountID);
   }

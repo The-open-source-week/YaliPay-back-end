@@ -15,15 +15,14 @@ export class CreateTransferencesService {
 
   async create(data: CreateTransferenceDto): Promise<Transference> {
     try {
-      // Obter o registro de cartão corresponde ao identificador fornecido
       const card = await this.CardRepo.findOne(data.cardID);
       if (!card) {
         throw new HttpException(
           {
-            status: HttpStatus.CONFLICT,
+            status: HttpStatus.NOT_FOUND,
             error: `Cartão não encontrado$.`,
           },
-          HttpStatus.CONFLICT,
+          HttpStatus.NOT_FOUND,
         );
       }
 
@@ -32,10 +31,24 @@ export class CreateTransferencesService {
       if (!sender) {
         throw new HttpException(
           {
-            status: HttpStatus.CONFLICT,
+            status: HttpStatus.NOT_FOUND,
             error: `Não existe usuário com o telefone ${data.phoneNumber}.`,
           },
-          HttpStatus.CONFLICT,
+          HttpStatus.NOT_FOUND,
+        );
+      }
+
+      const cardResponse = await this.CardRepo.update(card.id, {
+        amount: data.amount,
+      });
+
+      if (!cardResponse) {
+        throw new HttpException(
+          {
+            status: HttpStatus.NOT_FOUND,
+            error: `Não foi possível atualizar o cartão. Cartão Não Existente`,
+          },
+          HttpStatus.NOT_FOUND,
         );
       }
 
