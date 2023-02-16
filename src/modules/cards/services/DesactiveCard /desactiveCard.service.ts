@@ -12,6 +12,7 @@ export class DesactiveCardService {
         throw new NotFoundException('Cartão não encontrado');
       }
       await this.cardRepository.deactivateCard(cardId);
+      return { success: true, message: 'Cartão adicionado com sucesso' };
     } catch (error) {
       throw error;
     }

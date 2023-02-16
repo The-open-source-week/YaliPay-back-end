@@ -12,7 +12,7 @@ export class ActiveMainCardService {
       if (!card) {
         throw new NotFoundException('Cartão não encontrado');
       }
-      return card;
+      return { success: true, message: 'Cartão adicionado com sucesso' };
     } catch (error) {
       throw error;
     }
